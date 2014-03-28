@@ -1,0 +1,52 @@
+{% extends 'site_base.html' %}
+
+{% block content %}
+<script>
+	var RESUME_URL = '{% url "get_resume_list" %}';
+	
+	$(document).ready(function () {
+		var oTable =  $('#id_resumes').dataTable({
+			"bJQueryUI": false,
+			"bProcessing": true,
+			"bServerSide": true,
+			"sPaginationType": "bootstrap",
+			"sAjaxSource": RESUME_URL,
+		}).columnFilter({
+			aoColumns: [ 
+				{ type: "text" },
+				{ type: "text" },
+				{ type: "number" },
+				{ type: "text" },
+				{ type: "text" },
+				{ type: "text" }
+			]
+		});
+
+		$("input[type=text]").addClass('input-medium');
+	});
+</script>
+	<table id="id_resumes" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Gender</th>
+				<th>Experience</th>
+				<th>University</th>
+				<th>Graduation Year</th>
+				<th>Skills</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Name</th>
+				<th>Gender</th>
+				<th>Experience</th>
+				<th>University</th>
+				<th>Graduation Year</th>
+				<th>Skills</th>
+			</tr>
+		</tfoot>
+	</table>
+{% endblock %}
